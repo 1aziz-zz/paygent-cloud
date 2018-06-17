@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: group-service
+spec:
+  selector:
+    run: group-service
+  ports:
+    - protocol: TCP
+      port: 9001
+      targetPort: 9001
+  type: NodePort

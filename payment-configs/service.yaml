@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: payment-service
+spec:
+  selector:
+    run: payment-service
+  ports:
+    - protocol: TCP
+      port: 9003
+      targetPort: 9003
+  type: NodePort

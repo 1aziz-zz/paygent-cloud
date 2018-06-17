@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: home
+  labels:
+    run: home
+    group: paygent
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: home
+    spec:
+      containers:
+      - name: home
+        image: paygent.azurecr.io/myhome
+        ports:
+          - containerPort: 80
+            protocol: TCP
+      imagePullSecrets:
+        - name: my-acr-secret

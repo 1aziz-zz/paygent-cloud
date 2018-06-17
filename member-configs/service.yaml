@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: member-service
+spec:
+  selector:
+    run: member-service
+  ports:
+    - protocol: TCP
+      port: 9002
+      targetPort: 9002
+  type: NodePort

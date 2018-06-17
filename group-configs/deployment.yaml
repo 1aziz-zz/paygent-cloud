@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: group-service
+  labels:
+    run: group-service
+    group: paygent
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: group-service
+    spec:
+      containers:
+      - name: group-service
+        image: paygent.azurecr.io/groupservice
+        env:
+        - name: ACTIVEMQ_USER
+          valueFrom:
+            secretKeyRef:
+              name: activemq
+              key: activemq-user
+        - name: ACTIVEMQ_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: activemq
+              key: activemq-password
+        - name: ACTIVEMQ_URL
+          valueFrom:
+            secretKeyRef:
+              name: activemq
+              key: activemq-url
+        - name: MONGODB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongodb
+              key: mongodb-user
+        - name: MONGODB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mongodb
+              key: mongodb-pass
+        - name: MONGODB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: mongodb
+              key: mongodb-host
+        ports:
+          - containerPort: 9001
+            protocol: TCP      
+      imagePullSecrets:
+      - name: my-acr-secret

@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: home
+spec:
+  selector:
+    run: home
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
