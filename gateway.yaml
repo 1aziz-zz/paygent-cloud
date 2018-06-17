@@ -7,7 +7,7 @@ spec:
     serviceName: paygent-gateway
     servicePort: 80
   rules:
-    - host: "HOSNAME"
+    - host: "HOSTNAME"
       http:
         paths:
         - path: /
